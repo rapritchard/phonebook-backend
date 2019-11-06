@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const morgan = require('morgan')
+const morgan = require('morgan');
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 morgan.token('data', function (req, res) { 
     return JSON.stringify(req.body)
@@ -109,7 +111,15 @@ app.get('/info', (req, res) => {
     res.send(`<p>Phonebook has info for ${total} people</p><p>${date}</p>`)
 });
 
-const PORT = 3001;
+const unknownEndpoint = (req, res) => {
+    res.status(404).send({
+        error: 'unknown endpoint'
+    });
+};
+
+app.use(unknownEndpoint);
+
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
