@@ -14,9 +14,11 @@
   "author": "Reece Pritchard",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "morgan": "^1.9.1",
-    "cors": "^2.8.5"
+    "mongoose": "^5.7.9",
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
